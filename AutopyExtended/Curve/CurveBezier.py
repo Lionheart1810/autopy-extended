@@ -19,7 +19,7 @@ class CurveBezier(Curve):
 		if(t_target != self.__tn):
 			raise ValueError("t_target must be equal to tn.")
 		return (self.__x[t], self.__y[t])
-	
+
 	@staticmethod
 	def bernstein(i, n, t):
-		return comb(n, i) * (t ** (n - 1)) * (1 - t) ** i
+		return comb(n, i) * (t ** (n - i)) * (1 - t) ** i
