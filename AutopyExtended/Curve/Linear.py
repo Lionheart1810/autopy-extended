@@ -1,5 +1,5 @@
 import numpy as np
-import Curve
+from AutopyExtended.Curve.Curve import Curve
 
 class CurveLinear(Curve):
 	def __init__(self, start, end):

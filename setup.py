@@ -20,10 +20,15 @@ setuptools.setup(
     ],
     python_requires = '>=3.6',
     install_requires = [
-        "autopy"
+        "autopy",
+		"numpy",
+		"scipy"
     ],
     py_modules = [
-        "AutopyExtended/"
+        "AutopyExtended/Curve/Curve",
+		"AutopyExtended/Curve/Linear",
+		"AutopyExtended/Curve/Bezier"
+		"AutopyExtended/mouse"
     ],
     scripts = []
 )
