@@ -10,15 +10,17 @@ class CurveBezier(Curve):
 		y = np.array([p[1] for p in cp])
 		t = np.linspace(0, 1, tn)
 		poly = np.array([CurveBezier.bernstein(i, len(cp) - 1, t) for i in range(0, len(cp))])
-		self.__x = np.dot(x, poly)
-		self.__y = np.dot(y, poly)
+		self.__x = np.flip(np.dot(x, poly))
+		self.__y = np.flip(np.dot(y, poly))
 
 	def point(self, t, t_target=None):
 		if(t_target == None):
 			t_target = self.__tn
 		if(t_target != self.__tn):
 			raise ValueError("t_target must be equal to tn.")
-		return (self.__x[t], self.__y[t])
+		return np.add((self.__x[int(np.floor(t))], self.__y[int(np.floor(t))]), 
+			np.subtract((self.__x[int(np.ceil(t))], self.__y[int(np.ceil(t))]), 
+				(self.__x[int(np.floor(t))], self.__y[int(np.floor(t))])) * (t - np.floor(t)))
 
 	@staticmethod
 	def bernstein(i, n, t):
